@@ -24,32 +24,22 @@ Node *mergeList(Node *root, Node *t1) {
     while(root && t1) {
         if(root->data < t1->data) {
             head->child = root;
-            head = head->child;
             root = root->child;
         } else {
             head->child = t1;
-            head = head->child;
             t1 = t1->child;
         }
+        head = head->child; 
+        head->next = NULL;
     }
-    while(root) {
-        head->child = root;
-        head = head->child;
-        root = root->child;
-    }
-    while(t1) {
-        head->child = t1;
-        head = head->child;
-        t1 = t1->child;
-    }
+    if(root) head->child = root;
+    else head->child = t1;
+    head->next = NULL;
     return res->child;
 }
-Node* flattenLinkedList(Node* head) 
+Node* flattenLinkedList(Node* root) 
 {
-    Node *root = head, *t1 = head->next;
-    while(t1) {
-        root = mergeList(root, t1);
-        t1 = t1->next;
-    }
-    return root;
+    if(!root || !(root->next)) return root;
+    root->next = flattenLinkedList(root->next);
+    root = mergeList(root, root->next);
 }

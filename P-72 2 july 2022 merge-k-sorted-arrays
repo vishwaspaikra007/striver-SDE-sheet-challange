@@ -1,0 +1,29 @@
+// striver SDE sheet challange merge-k-sorted-arrays
+// author Vishwas Paikra
+vector<int> merge(vector<int> &ans, vector<int> &vec) {
+    vector<int> list;
+    int i = 0, j = 0;
+    
+    while(i < ans.size() && j < vec.size()) {
+        if(ans[i] < vec[j])
+            list.push_back(ans[i++]);
+        else
+            list.push_back(vec[j++]);
+    }
+    
+    while(i < ans.size())
+            list.push_back(ans[i++]);
+    
+    while(j < vec.size()) 
+            list.push_back(vec[j++]);
+    
+    return list;
+}
+vector<int> mergeKSortedArrays(vector<vector<int>>&kArrays, int k)
+{
+    vector<int> ans;
+    for(auto &vec : kArrays) {
+        ans = merge(ans, vec);
+    }
+    return ans;
+}

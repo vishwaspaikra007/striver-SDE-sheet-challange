@@ -1,4 +1,4 @@
-// striver SDE sheet challange stocks-are-profitable
+// striver SDE sheet challange number-of-distinct-substring
 // author Vishwas Paikra
 #include <bits/stdc++.h> 
 int maximumProfit(vector<int> &prices){
